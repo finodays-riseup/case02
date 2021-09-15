@@ -1,2 +1,2 @@
 # case02 #
-[Google Document](https://docs.google.com/document/d/1MyUdBDbJkLUZnRh4Ot-XtoCtqD23hbDyQveMCcgbqjk/edit#heading=h.u733tjnjk21e)
+[Папка на Google Drive](https://drive.google.com/drive/folders/12OqkVQ42YCYHQQMJnAuJe5E4IsUGdgD9)
