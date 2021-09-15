@@ -1,0 +1,5 @@
+.idea/
+!.idea/runConfigurations/
+
+venv/
+__pycache__/
