@@ -46,9 +46,11 @@ class FormPage(AbstractPage):
             )
         )
         col1, col2 = rt.columns(2)
-        d["area"] = col1.number_input("Площадь (кв. м)", step=0.1, max_value=FLOAT_MAX)
+        d["area"] = col1.number_input(
+            "Площадь (кв. м)", step=0.1, min_value=0.0, max_value=FLOAT_MAX
+        )
         d["kitchen_area"] = col2.number_input(
-            "Площадь кухни (кв. м)", step=0.1, max_value=d.get("area")
+            "Площадь кухни (кв. м)", step=0.1, min_value=0.0, max_value=d.get("area")
         )
         col1, col2 = rt.columns(2)
         d["geo_lat"] = col1.number_input(
