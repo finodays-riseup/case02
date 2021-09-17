@@ -39,7 +39,7 @@ class FormPage(AbstractPage):
             )
 
         d["rooms"] = (
-            -1
+            0
             if d.get("is_studio")
             else int(
                 rt.number_input("Количество комнат", step=1, min_value=1, max_value=100)

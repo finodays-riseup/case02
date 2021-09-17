@@ -8,7 +8,7 @@ class Model(ABC):
             self._model = pickle.load(file)
 
     def predict(self, features):
-        encoded_features = self.encoded_features(features)
+        encoded_features = self.encode_features(features)
         return self.decode_target(self._model.predict(encoded_features))
 
     @abstractmethod
