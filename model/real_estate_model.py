@@ -1,10 +1,10 @@
-from model import Model
+from model import PickledModel
 import numpy as np
 import pandas as pd
 from geopy.distance import geodesic
 
 
-class RealEstateModel(Model):
+class RealEstateModel(PickledModel):
     COLUMNS = [
         'geo_lat', 'geo_lon', 'building_type', 'level', 'levels', 'rooms',
         'area', 'kitchen_area', 'city_center_distance', 'population'
