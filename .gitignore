@@ -1,5 +1,4 @@
 .idea/
-!.idea/runConfigurations/
 
 venv/
 __pycache__/
@@ -7,3 +6,6 @@ __pycache__/
 cmake-build-*/
 
 pickles/
+
+!.idea/runConfigurations/
+!.gitkeep
