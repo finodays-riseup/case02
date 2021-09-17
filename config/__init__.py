@@ -1,6 +1,6 @@
 import pathlib
 
-ROOT_DIR = pathlib.Path(__file__).parent
+ROOT_DIR = pathlib.Path(__file__).parent.parent
 PICKLES_DIR = ROOT_DIR.joinpath("pickles")
 
 API_ADDR = "127.0.0.1"
@@ -19,3 +19,4 @@ MODELS = [
         str(PICKLES_DIR.joinpath("vehicle.v3.pkl")),
     ),
 ]
+MODELS_BY_PATH = {path: (name, pkl_path) for path, name, pkl_path in MODELS}
