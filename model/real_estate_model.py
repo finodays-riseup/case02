@@ -23,9 +23,6 @@ class RealEstateModel(Model):
         super().__init__(model_path)
         self._cities = pd.read_csv(cities_path)
 
-    def __init__(self, path):
-        super().__init__(path)
-
     def encode_features(self, features):
         encoded_features = {}
         for column in RealEstateModel.COLUMNS:
