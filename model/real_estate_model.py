@@ -1,7 +1,7 @@
-from model.model import Model
+from model.pickled_model import PickledModel
 
 
-class RealEstateModel(Model):
+class RealEstateModel(PickledModel):
     def _encode_features(self, features):
         return
 

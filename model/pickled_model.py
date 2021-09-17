@@ -1,8 +1,10 @@
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 import pickle
 
+from model.abstract_model import AbstractModel
 
-class Model(ABC):
+
+class PickledModel(AbstractModel):
     def __init__(self, path):
         with open(path, "rb") as file:
             self._model = pickle.load(file)
