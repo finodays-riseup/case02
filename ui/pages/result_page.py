@@ -21,5 +21,8 @@ class ResultPage(AbstractPage):
             assert False
         response = requests.post(API_BASE_URL + path, json=data)
 
+        rt.write("Input:")
+        rt.write(data)
+        rt.write("API Response:")
         rt.write(response.json())
         rt.button("Назад", on_click=self._update_state)
