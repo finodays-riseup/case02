@@ -1,7 +1,22 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
+import functools
 
-from config import API_ADDR, API_PORT
+from config import API_ADDR, API_PORT, MODELS_BY_PATH, DATA_DIR
+from model import *  # noqa
+
+
+@functools.lru_cache(maxsize=None)
+def get_cached_model(name, pkl_path) -> PickledModel:
+    cls = globals()[name]
+    if name == "RealEstateModel":
+        obj = cls(
+            pkl_path,
+            DATA_DIR.joinpath("city.csv"),
+        )
+    else:
+        obj = cls(pkl_path)
+    return obj
 
 
 class ApiServer(BaseHTTPRequestHandler):
@@ -23,12 +38,14 @@ class ApiServer(BaseHTTPRequestHandler):
         self.wfile.write(b)
 
     def do_POST(self):
-        if self.path == "/real_estate/predict_price":
-            self._send_json({"price": 123456})
-        elif self.path == "/vehicle/predict_price":
-            self._send_json({"price": 654321})
-        else:
+        if self.path not in MODELS_BY_PATH:
             self.send_error(404)
+            return
+
+        name, pkl_path = MODELS_BY_PATH[self.path]
+        model = get_cached_model(name, pkl_path)
+        data = self._recv_json()
+        self._send_json(model.predict(data))
 
 
 def run(server_class=HTTPServer, handler_class=ApiServer, addr="127.0.0.1", port=8000):

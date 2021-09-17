@@ -13,16 +13,21 @@ class ResultPage(AbstractPage):
         rt = self._root
 
         data = st.session_state["form_data"]
-        if data["property_type"] == "Недвижимость":
-            path = "/real_estate/predict_price"
-        elif data["property_type"] == "Автомобиль":
-            path = "/vehicle/predict_price"
-        else:
-            assert False
-        response = requests.post(API_BASE_URL + path, json=data)
-
         rt.write("Input:")
         rt.write(data)
-        rt.write("API Response:")
-        rt.write(response.json())
+
+        try:
+            if data["property_type"] == "Недвижимость":
+                path = "/real_estate/predict_price"
+            elif data["property_type"] == "Автомобиль":
+                path = "/vehicle/predict_price"
+            else:
+                assert False
+            response = requests.post(API_BASE_URL + path, json=data)
+
+            rt.write("API Response:")
+            rt.write(response.json())
+        except Exception as exp:
+            rt.write("Exception:")
+            rt.exception(exp)
         rt.button("Назад", on_click=self._update_state)

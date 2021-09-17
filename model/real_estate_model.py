@@ -48,14 +48,14 @@ class RealEstateModel(PickledModel):
         population = 0
         coordinates = (features["geo_lat"], features["geo_lon"])
         for (_, city) in self._cities.iterrows():
-            cur_distance = geodesic((city["geo_lat"], city["geo_lon"]), coordinates)
+            cur_distance = geodesic((city["geo_lat"], city["geo_lon"]), coordinates).m
             if cur_distance < distance:
                 distance = cur_distance
                 population = city["population"]
         encoded_features["population"] = population
         encoded_features["city_center_distance"] = distance
 
-        return pd.DataFrame.from_dict(encoded_features)
+        return pd.DataFrame([encoded_features])
 
     def _decode_target(self, target):
         return np.exp(target)[0]
