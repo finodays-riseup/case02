@@ -1,17 +1,8 @@
+import requests
 import streamlit as st
 
-from model.model import Model
 from ui.pages.abstract_page import AbstractPage
-
-
-@st.cache
-def get_real_estate_model() -> Model:
-    raise NotImplementedError()
-
-
-@st.cache
-def get_vehicle_model() -> Model:
-    raise NotImplementedError()
+from config import API_BASE_URL
 
 
 class ResultPage(AbstractPage):
@@ -22,11 +13,13 @@ class ResultPage(AbstractPage):
         rt = self._root
 
         data = st.session_state["form_data"]
-        model = None
         if data["property_type"] == "Недвижимость":
-            model = get_real_estate_model()
+            path = "/real_estate/predict_price"
         elif data["property_type"] == "Автомобиль":
-            model = get_vehicle_model()
+            path = "/vehicle/predict_price"
+        else:
+            assert False
+        response = requests.post(API_BASE_URL + path, json=data)
 
-        rt.write(model.predict(data))
+        rt.write(response.json())
         rt.button("Назад", on_click=self._update_state)
