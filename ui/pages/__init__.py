@@ -1,9 +1,9 @@
 import streamlit as st
 
-from .abstract_page import AbstractPage
-from .form_page import FormPage
-from .result_page import ResultPage
-from .not_found_page import NotFoundPage
+from ui.pages.abstract_page import AbstractPage
+from ui.pages.form_page import FormPage
+from ui.pages.result_page import ResultPage
+from ui.pages.not_found_page import NotFoundPage
 
 try:
     import typing

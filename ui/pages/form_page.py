@@ -1,7 +1,7 @@
 import streamlit as st
 
-from .abstract_page import AbstractPage
-from .form_options import *
+from ui.pages.abstract_page import AbstractPage
+from ui.pages.form_options import *
 
 INT_MAX = (1 << 53) - 1
 FLOAT_MAX = 1e100

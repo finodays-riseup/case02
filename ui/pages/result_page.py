@@ -1,6 +1,6 @@
 import streamlit as st
 
-from .abstract_page import AbstractPage
+from ui.pages.abstract_page import AbstractPage
 
 
 class ResultPage(AbstractPage):
