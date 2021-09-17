@@ -4,7 +4,7 @@ import pickle
 
 class Model(ABC):
     def __init__(self, path):
-        with open(path, 'rb') as file:
+        with open(path, "rb") as file:
             self._model = pickle.load(file)
 
     def predict(self, features):
